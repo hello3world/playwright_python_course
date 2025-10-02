@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, Playwright
 
 def test_playwright_basics(playwright):
     browser = playwright.chromium.launch(headless=False)
@@ -26,4 +26,7 @@ def test_core_locators(page: Page):
     # Example assertion: verify error message appears
     expect(page.get_by_text("Incorrect username/password.")).to_be_visible()
 
-    #Incorrect message
+def test_FirefoxBrowser(playwright: Playwright):
+    firefox_browser = playwright.firefox
+    browser = firefox_browser.launch(headless=False)
+    page = browser.new_page()
