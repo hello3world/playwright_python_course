@@ -26,7 +26,7 @@ def test_core_locators(page: Page):
     # Example assertion: verify error message appears
     expect(page.get_by_text("Incorrect username/password.")).to_be_visible()
 
-def test_FirefoxBrowser(playwright: Playwright):
+def test_firefox_browser(playwright: Playwright):
     firefox_browser = playwright.firefox
     browser = firefox_browser.launch(headless=False)
     page = browser.new_page()
