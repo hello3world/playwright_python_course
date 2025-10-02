@@ -17,7 +17,17 @@ def test_ui_validation_dynamic_script(page:Page):
     expect(page.locator(".media-body")).to_have_count(2)
 
 
+def test_child_window_handle(page:Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise/")
 
+    with page.expect_popup() as new_page_info:
+        page.get_by_role("link", name = "Free Access to InterviewQues/ResumeAssistance/Material").click()  # new page
+        child_page = new_page_info.value
+        text = child_page.locator(".red").text_content()
+        print(text) #Please email us at mentor@rahulshettyacademy.com with below template to receive response
+        words = text.split("at") #0 -> Please email us ,  1->mentor@rahulshettyacademy.com with below template to receive response
+        email = words[1].strip().split(" ")[0]    #0->mentor@rahulshettyacademy.com 1->
+        assert email == "mentor@rahulshettyacademy.com"
 
 
 
