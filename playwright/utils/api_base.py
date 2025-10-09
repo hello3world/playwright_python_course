@@ -1,6 +1,6 @@
 from playwright.sync_api import Playwright
 
-orders_payload = {"orders":[{"country":"Belarus","productOrderedId":"68a961719320a140fe1ca57c"}]}
+orders_payload = {"orders":[{"country":"Belarus","productOrderedId":"68a961959320a140fe1ca57e"}]}
 
 
 class ApiUtils:
@@ -10,7 +10,7 @@ class ApiUtils:
         user_password = user_credentials["user_password"]
         response = api_request_context.post("/api/ecom/auth/login",
                                             data={"userEmail": user_email, "userPassword": user_password})
-        assert response.ok
+        assert response.ok, f"Response status is not ok {response.status}, {response.text}"
         print(response.json())
         response_body = response.json()
         return response_body["token"]
