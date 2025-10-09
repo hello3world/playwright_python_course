@@ -1,10 +1,10 @@
 from playwright.sync_api import Playwright, expect
 
-from utils.api_base import ApiUtils
+from utils.api_base_without_parametrize import ApiUtils
 
 
 def test_e2e_web_api(playwright: Playwright):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch()
     context = browser.new_context()
     page = context.new_page()
 
@@ -14,8 +14,8 @@ def test_e2e_web_api(playwright: Playwright):
 
     #login
     page.goto("https://rahulshettyacademy.com/client")
-    page.get_by_placeholder("email@example.com").fill("rahulshetty@gmail.com")
-    page.get_by_placeholder("enter your passsword").fill("Iamking@000")
+    page.get_by_placeholder("email@example.com").fill("e.pavlovich29@gmail.com")
+    page.get_by_placeholder("enter your passsword").fill("1478963148635Jane*")
     page.get_by_role("button", name="Login").click()
 
     page.get_by_role("button", name="ORDERS").click()
